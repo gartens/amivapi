@@ -9,6 +9,9 @@ from amivapi.tests import util
 
 from amivapi.settings import DATE_FORMAT
 
+from random import random
+from PIL import Image
+
 import json
 
 
@@ -780,3 +783,41 @@ class SignupDataTest(util.WebTestNoAuth):
 
         self.assertFalse('_email_unreg' in response.keys())
         self.assertFalse('_token' in response.keys())
+
+
+class ImageTest(util.WebTestNoAuth):
+    """Checks all validators concerning image format and size."""
+
+    def test_image_filetypes(self):
+
+        # create random image
+        img = Image.new('RGB', (10, 10))
+        #img.putdata([random() for _ in range(100)])
+        img.save('test.png')
+
+        # now assign this image to an event
+        event = self.new_event()
+        h = {'content-type': 'multipart/form-data',
+             'If-Match': event._etag}
+        filename = u"test.png"
+
+        with open('amivapi/tests/fixtures/lena.png', 'rb') as image:
+            data_patch = {'img_infoscreen': (image, 'lena.png')}
+
+            response = self.api.patch('/events/%i' % event.id,
+                                      data=data_patch, headers=h,
+                                      status_code=201)
+
+        h = {'content-type': 'multipart/form-data',
+             'If-Match': event._etag}
+
+        with open(filename, 'rb') as image:
+            data_patch = {'img_infoscreen': (image, filename)}
+
+            response = self.api.patch('/events/%i' % event.id,
+                                      data=data_patch, headers=h,
+                                      status_code=201)
+
+        #assert False
+        #self.assert_media_stored(filename_post, content_post)
+        raw_input()
