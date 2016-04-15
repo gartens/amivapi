@@ -12,6 +12,7 @@
 
 import json
 import jsonschema
+from PIL import Image
 
 from flask import g, current_app as app
 from werkzeug.datastructures import FileStorage
@@ -26,8 +27,9 @@ from amivapi.utils import get_owner, get_class_for_resource
 from datetime import datetime
 
 
+
 class ValidatorAMIV(ValidatorSQL):
-    """ A Validator subclass adding more validation for special fields
+    """ A Validator subclass adding more validation for special fields.
     """
 
     def _validate_type_media(self, field, value):
@@ -53,6 +55,8 @@ class ValidatorAMIV(ValidatorSQL):
         :param field: field name.
         :param value: field value.
         """
+        print(value)
+        print("image is of type %s" %what(value))
         if not((('pdf' in filetype) and (value.read(4) == r'%PDF')) or
                (what(value) in filetype)):
             self._error(field, "filetype not supported, has to be one of: " +
@@ -395,7 +399,7 @@ class ValidatorAMIV(ValidatorSQL):
 
     def _validate_type_permissions_jsonschema(self, field, value):
         """
-        Validates the jsonschema provided using the python jsonschema library
+        Validates the jsonschema provided using the python jsonschema library.
 
         :param jsonschema: The jsonschema to use
         :param field: field name.
@@ -408,3 +412,23 @@ class ValidatorAMIV(ValidatorSQL):
         except jsonschema.exceptions.ValidationError as v_error:
             # Something was not according to schema
             self._error(field, v_error.message)
+
+    def _validate_aspect_ratio(self, str_ratio, field, value):
+        """
+        Validate the resolution and aspect ratio of an image file.
+
+        args:
+            str_ratio (string): gives aspect ratio in format '<width>x<height>'
+            field (string): field name where the image got uploaded
+            value (string): in this case the filename
+        """
+        # get image resolution
+        img = Image.open(value)
+        (width, height) = img.size
+
+        # check if resolution fulfills ratio
+        # TODO: maybe introduce 2% inanccuracy?
+        ratio = [int(x) for x in str_ratio.split('x')]
+        factor = 1.0 * width / ratio[0]
+        if not factor * ratio[1] == height:
+            self._error(field, "Image is not in valid shape %s" % str_ratio)

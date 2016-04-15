@@ -134,7 +134,8 @@ def get_domain():
         'img_thumbnail': {'type': 'media', 'filetype': ['png', 'jpeg']},
         'img_banner': {'type': 'media', 'filetype': ['png', 'jpeg']},
         'img_poster': {'type': 'media', 'filetype': ['png', 'jpeg']},
-        'img_infoscreen': {'type': 'media', 'filetype': ['png', 'jpeg']}
+        'img_infoscreen': {'type': 'media', 'filetype': ['png', 'jpeg'],
+                           'aspect_ratio': '16x9'}
     })
 
     # /eventsignups
