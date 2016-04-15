@@ -103,7 +103,34 @@ Registered users can join any **public** group and leave all groups they are mem
 
 #### Priviledged users
 * The **group moderator** can add and remove users and addresses of his group. He can change everything except the group permissions (since his could be used for full API privilege)
-* General group administrators can do all of the above but also modify ppermissions. This status should be given with care.
+* General group administrators can do all of the above but also modify permissions. This status should be given with care.
+
+---
+
+### Events ( */events* )
+
+An event is anything happening within AMIV you want others to know of and join. For example, the "Kulturteam" (event team) may announce a barbacue with beer and sausage.
+
+Events may offer the following information:
+
+* **time and location**
+* **price** This information is seperated from the description as it is an important information that should be presented to everybody before signing up. Furthermore, this way we offer the possibility for electronic payments.
+* **spots** and **registration timeframe** Many events are limited concerning the number of people attending. Therefore, they require registration in advance ( */eventsignups* ). To be fair to all users, the event may be published before the opening of the registration so people have equal chances to register as soon as the timeframe opens. Furthermore, people can sign up for an event no matter if there are already more registrations than spots. They are kept in a queue in this case.
+* **registration form** In some cases, the event organizer requires additional information in advance, e.g. whether attendees have a "Halbtax" (train discount card) or if they are older than 18 years.
+* **description** and **images** mostly to promote events to members in an attractive way. As many MSc students do not speak German, organizers may promote an event in English aswell.
+* **promotion settings** to steer the promotion of an event, organizers can set in which contexts the event is promoted (in the newsletter / on the homepage / ...)
+
+
+#### Public users
+Can see events and can register to events that are open to non-members. As we do not have any contact information for them, they need to register with an email address and confirm this address.
+
+#### Registered users
+Can see events and register to all events as soon as they are logged in.
+
+#### Priviledged users
+* The **event owner** can see signups for his/her events and also change and delete registrations and the complete event.
+* General event administrators can do all the above but for all events.
+
 
 
 TODO: Rest of resources
