@@ -127,7 +127,7 @@ class EventValidator(object):
             lookup = {current_app.config['ID_FIELD']: event_id}
             event = current_app.data.find_one("events", None, **lookup)
 
-            # If the event doesnt exist we do not have to do anything,
+            # If the event doesn't exist we do not have to do anything,
             # The 'type' validator will generate an error anyway
             if event is not None and not event["allow_email_signup"]:
                 self._error(field,
@@ -197,7 +197,7 @@ class EventValidator(object):
         return time.replace(tzinfo=None)
 
     def _validate_later_than(self, later_than, field, value):
-        """Validate time dependecy.
+        """Validate time dependency.
 
         Value must be at the same time or later than a the value of later_than
         """
@@ -210,7 +210,7 @@ class EventValidator(object):
                         later_than)
 
     def _validate_earlier_than(self, earlier_than, field, value):
-        """Validate time dependecy.
+        """Validate time dependency.
 
         Value must be at the same time or later than a the value of later_than
         """
@@ -243,13 +243,13 @@ class EventValidator(object):
     def _validate_required_if_not(self, *args):
         """Dummy function for Cerberus.(It complains if it can find the rule).
 
-        Functionality is implemented in the requierd field validation.
+        Functionality is implemented in the required field validation.
         """
 
     def _validate_required_fields(self, document):
         """Extend the parsing of to support requirements depending on fields.
 
-        Needed for language fields, where either german or english is needed.
+        Needed for language fields, where either German or English is needed.
         The new requirement validator will (in addition to the default
         `required` field) check for a a `required_`
         """

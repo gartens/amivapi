@@ -100,7 +100,7 @@ userdomain = {
                 'empty': False,
                 'nullable': True,
                 'default': None,
-                'description': 'Leave empty to use just LDAP authentification. '
+                'description': 'Leave empty to use just LDAP authentication. '
                 'People without LDAP should use this field.',
                 'session_younger_than': timedelta(minutes=1)
             },

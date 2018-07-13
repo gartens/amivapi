@@ -3,7 +3,7 @@ FROM python:3.6-alpine
 # Create user with home directory and no password and change workdir
 RUN adduser -Dh /api amivapi
 WORKDIR /api
-# API will run on port 80
+# API will run on port 8080
 EXPOSE 8080
 # Environment variable for config, use path for docker secrets as default
 ENV AMIVAPI_CONFIG=/run/secrets/amivapi_config

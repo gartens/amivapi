@@ -24,7 +24,7 @@ class GroupValidator(object):
             group_id = self.document['group']
             group = current_app.data.find_one('groups', None, _id=group_id)
 
-            # If the group doesnt exist we dont have to do anything,
+            # If the group doesn't exist we don't have to do anything,
             # The 'type' validator will generate an error anyway
             if group:
                 user_id = g.get('current_user')

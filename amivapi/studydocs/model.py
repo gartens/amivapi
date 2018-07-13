@@ -15,7 +15,7 @@ studydocdomain = {
         'description': 'Study-documents are basically all documents that are '
         'connected to a course. Most metadata is optional and intended to '
         'help finding the file. There are no strict categories, as those do '
-        'not work well for courses available to many departements and aiming '
+        'not work well for courses available to many departments and aiming '
         'at all levels of experience.',
 
         'resource_methods': ['GET', 'POST'],

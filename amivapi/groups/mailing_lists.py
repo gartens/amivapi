@@ -210,7 +210,7 @@ def ssh_command(remote_command, input=None):
         Str: stdout of command
 
     Raises:
-        RuntimeError: An error with the ssh connection occured.
+        RuntimeError: An error with the ssh connection occurred.
     """
     keyfile = current_app.config.get('REMOTE_MAILING_LIST_KEYFILE')  # optional
     address = current_app.config['REMOTE_MAILING_LIST_ADDRESS']

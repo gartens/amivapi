@@ -23,7 +23,7 @@ class UserAuth(AmivTokenAuth):
     - Registered users can change their own data (nobody else)
 
 
-    We dont have to care about:
+    We don't have to care about:
 
     - Admins, since for them no filters etc are applied
     - Unregistered users, since no methods are public.

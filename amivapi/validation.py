@@ -136,7 +136,7 @@ class ValidatorAMIV(Validator):
             value: field value.
         """
         if threshold_timedelta < timedelta(seconds=0):
-            # Use abort to actually give a stacktrace and break tests.
+            # Use abort to actually give a stack trace and break tests.
             abort(500, "Invalid field definition: %s: %s, "
                   "session_younger_than must be positive."
                   % (self.resource, field))

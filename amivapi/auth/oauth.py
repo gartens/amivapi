@@ -32,7 +32,7 @@ oauth_blueprint = Blueprint('oauth', __name__, template_folder='templates')
 
 
 def _append_url_params(url, **params):
-    """Helper to add addtional parameters to an url query string."""
+    """Helper to add additional parameters to an url query string."""
     if '?' not in url:
         url += '?'
     return '%s&%s' % (url, urlencode(params))
@@ -170,7 +170,7 @@ def oauth():
     else:
         # Get first name for personal greeting
         query = {'_id': ObjectId(g.current_user)}
-        projection = {'firstname': 1}  # Firstame is a required field for users
+        projection = {'firstname': 1}  # First name is a required field for users
         data = current_app.data.driver.db['users'].find_one(query, projection)
         user = data['firstname']
 

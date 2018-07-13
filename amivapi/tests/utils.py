@@ -37,7 +37,7 @@ class TestClient(FlaskClient):
 
         Adds token and headers and asserts status code.
         """
-        # We are definetly going to add some headers
+        # We are definitely going to add some headers
         if 'headers' not in kwargs:
             kwargs['headers'] = {}
 
@@ -180,7 +180,7 @@ class WebTest(unittest.TestCase, FixtureMixin):
 
 
 class WebTestNoAuth(WebTest):
-    """WebTest without authentification."""
+    """WebTest without authentication."""
 
     def setUp(self, **extra_config):
         """Use auth hook to always authenticate as root for every request."""

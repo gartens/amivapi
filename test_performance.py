@@ -22,7 +22,7 @@ from sys import argv, stdout
 # likely, when running this script multiple times.
 counter = count(random.randint(0, 0x7fffffff))
 
-# Can be overwriten by command line argument
+# Can be overwritten by command line argument
 DEBUG = False
 
 req_session = requests.Session()

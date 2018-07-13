@@ -112,7 +112,7 @@ The main-directory lists following files:
 * bootstrap.py: The Eve-App gets created here. All blueprints and event-hooks are registered in the bootstrap.
 * confirm.py: Blueprint and event-hooks regarding the confirmation of unregistered users.
 * cron.py: Jobs run on a regular basis (sending mail about expiring permissions, cleanup)
-* documentation.py: Loads additional documentation for the blueptrints.
+* documentation.py: Loads additional documentation for the blueprints.
 * forwards.py: Hooks to implement the email-functionality of forwards and assignments to forwards.
 * localization.py: Localization of content-fields.
 * media.py: File Storage. Handles uploaded files and serves them to the user.
@@ -128,12 +128,12 @@ For understanding the structure of the api, the data-model in models.py is the P
 # Security
 
 Checking whether a request should be allowed consists of two steps,
-authentication and authorization. Authentification is the process of
+authentication and authorization. Authentication is the process of
 determining the user which is performing the action. Authorization is the
-process of determining which actions should be allowed for the authentificated
+process of determining which actions should be allowed for the authenticated
 user.
 
-Authentification will provide the ID of the authentificated user in
+Authentication will provide the ID of the authenticated user in
 g.logged_in_user
 
 Authorization will provide whether the user has an admin role in
@@ -154,7 +154,7 @@ Perform authentication(will abort the request for anonymous users):
 Replace <resource> with the respective resource name.
 
 
-## Authentification
+## Authentication
 
 File: authentication.py
 
@@ -213,7 +213,7 @@ this is not checked anymore in step 4.
 
 Roles can be defined in permission_matrix.py. A role can give a user the right
 to perform any action on an endpoint. If permission is granted based on a role
-no further filters are applied, hence it is refered to as admin access and
+no further filters are applied, hence it is referred to as admin access and
 g.resource_admin is set.
 
 ### Owner checks
@@ -261,7 +261,7 @@ language dependant content, these are:
 - joboffers.title
 - joboffers.description
 - events.title
-- events.desription
+- events.description
 
 
 The general idea is: for every instance of each field we want an unique ID that
@@ -287,7 +287,7 @@ The insert_localized_fields hook check the language relevant fields and has to q
 
 Then it uses flasks request.accept_languages.best_match() function to get the best fitting option. (it compares the Accept Language header to the given languages)
 
-When none is matching it tries to return content in default language as specified in settings.py (Idea behind this: There will nearly always be german content). If this it not available, it uses an empty string)
+When none is matching it tries to return content in default language as specified in settings.py (Idea behind this: There will nearly always be German content). If this it not available, it uses an empty string)
 
 The field (title or description) is then added to the response
 
@@ -304,8 +304,8 @@ Since there are only four language fields (with title and description for both e
 
 For every language field the following is necessary:
 
-- Internal post to languagemappings to create the id (locatization.py, hook)
-- Retrieving the content when fetching the resource (locatization.py, hook)
+- Internal post to languagemappings to create the id (localization.py, hook)
+- Retrieving the content when fetching the resource (localization.py, hook)
 - Adding a  id (foreignkey) and relationship to translationmappings (models.py)
 - Removing id from the schema to prohibit manually setting it (schemas.py)
 
@@ -343,10 +343,10 @@ After a lot of testing we settled on just importing them all as the most effecti
 
 Most of the field ins LDAP are straightforward. Many fields exist and most of them can be ignored. See ldap.py for the relevant fields.
 
-Important is only the field "ou" which stands for "organisational unit" in LDAP.
+Important is only the field "ou" which stands for "organizational unit" in LDAP.
 This field contains info about field of study and VSETH membership.
 The fields which are part of AMIV are specified in settings.py and can be changed there (if necessary)
-The list itself can be aquired from VSETH IT.
+The list itself can be acquired from VSETH IT.
 
 
 # Files

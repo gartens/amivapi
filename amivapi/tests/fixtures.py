@@ -194,7 +194,7 @@ class FixtureMixin(object):
     def preprocess_events(self, schema, obj, fixture):
         """Event validators are pretty complex, so do all thing with custom
         validators by hand"""
-        # Add either german or englisch texts
+        # Add either German or English texts
         if random.choice([True, False]):
             obj.setdefault(
                 'title_de',
@@ -216,7 +216,7 @@ class FixtureMixin(object):
                 'description_en',
                 self.create_random_value(schema['description_en']))
 
-        # fullfill earlier_than and later_than validators
+        # fulfill earlier_than and later_than validators
         obj['time_advertising_start'] = (
             datetime.now(pytz.utc) - timedelta(
                 seconds=random.randint(0, 1000000)))

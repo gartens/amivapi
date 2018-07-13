@@ -24,14 +24,14 @@ All strings are UTF-8.
 
 ## About REST
 
-AMIV API is a [REST API](https://de.wikipedia.org/wiki/Representational_State_Transfer). REST is a stateless protocoll modelled after HTTP. The API consists of resources, which have objects. For example the resource /users provides access to the member database. Every resource has the methods GET, POST, PUT, PATCH, DELETE. These are the known regular HTTP methods, GET and POST being the most well known. The API is based on the [python-eve](http://python-eve.org/index.html) framework, so you can refer to eve for detailed information as well.
+AMIV API is a [REST API](https://de.wikipedia.org/wiki/Representational_State_Transfer). REST is a stateless protocol modelled after HTTP. The API consists of resources, which have objects. For example the resource /users provides access to the member database. Every resource has the methods GET, POST, PUT, PATCH, DELETE. These are the known regular HTTP methods, GET and POST being the most well known. The API is based on the [python-eve](http://python-eve.org/index.html) framework, so you can refer to eve for detailed information as well.
 
 There are many clients available to use REST and there are libraries for all kind of programming languages. Many HTTP libraries will also be able to communicate with a REST API.
 
 The methods meanings:
 
 Resource methods(use i.e. on /users)
- * GET - Retriving data, query information may be passed in the query string
+ * GET - Retrieving data, query information may be passed in the query string
  * POST - Creating a new entry, the new entry must be provided in the data section
 
 Item methods(use i.e. on /users/4)
@@ -41,7 +41,7 @@ Item methods(use i.e. on /users/4)
 
 ## Response format
 
-The status code returned by the API are the standard [HTTP status codes](https://de.wikipedia.org/wiki/HTTP-Statuscode). Codes starting with 2 mean the operation was successfull, starting with 3 are authentication related, 4 are client errors, 5 are server errors, 6 are global errors. Most important codes are:
+The status code returned by the API are the standard [HTTP status codes](https://de.wikipedia.org/wiki/HTTP-Statuscode). Codes starting with 2 mean the operation was successful, starting with 3 are authentication related, 4 are client errors, 5 are server errors, 6 are global errors. Most important codes are:
 
  * 200 - OK (Generic success)
  * 201 - Created (successful POST)
@@ -50,8 +50,8 @@ The status code returned by the API are the standard [HTTP status codes](https:/
  * 400 - Bad request (This means your request has created an exception in the server and the previous state was restored, if you are sure it is not your fault file a bug report)
  * 401 - Please log in
  * 403 - Logged in but not allowed (This is not for you)
- * 404 - No content (This can also mean you could retrive something here, but no object is visible to you because your account is that of a peasant)
- * 412 - The etag or confirmation-token you provieded is wrong
+ * 404 - No content (This can also mean you could retrieve something here, but no object is visible to you because your account is that of a peasant)
+ * 412 - The etag or confirmation-token you provided is wrong
  * 422 - Semantic error (Your data does not make sense, e.g. dates in the past which should not be)
 
  * 500 - Generic server error
@@ -63,7 +63,7 @@ All responses by the API are in the [json format](https://de.wikipedia.org/wiki/
 
 The API is supposed to be human readable, meaning a human can read the responses and only knowing REST standard can perform any action available. That means it is possible to get any information about the structure of the data via the API. Starting at the root node / URL links will be provided to any object.
 
-Check [wikipedia](https://en.wikipedia.org/wiki/HATEOAS) for more info.
+Check [Wikipedia](https://en.wikipedia.org/wiki/HATEOAS) for more info.
 
 ## Example: First Request
 
@@ -134,7 +134,7 @@ Response:
     }
 
 
-# Authentification
+# Authentication
 
 Most access to the API is restricted. To perform queries you have to log in and acquire a login token. The login token is a unique string identifying you during a session. Sessions are a part of the data model as any other object and can be created in the normal way. Just send a POST request to the /sessions resource:
 
@@ -170,7 +170,7 @@ We will look at the details of this response later. First we only notice the tok
 
 ## Example: Retrieving user
 
-It is possible to retrive a user using its nethz. Normally we would use an ID to retrive an item, but in this case it is easier this way.
+It is possible to retrieve a user using its nethz. Normally we would use an ID to retrieve an item, but in this case it is easier this way.
 
 Request:
 
@@ -224,11 +224,11 @@ Response:
 
 ## API keys
 
-If access is not done by a user but rather by a service(cron, vending machine, info screen), user based authorization does not work. Instead an API key can be used. The API administrator can generate keys using the manage.py script and configure which endpoints can be accessed. Endpoint access via API key will give admin priviledges. The API key can be sent in the same way as a token. You can think of it as a permanent admin session for specific endpoints.
+If access is not done by a user but rather by a service(cron, vending machine, info screen), user based authorization does not work. Instead an API key can be used. The API administrator can generate keys using the manage.py script and configure which endpoints can be accessed. Endpoint access via API key will give admin privileges. The API key can be sent in the same way as a token. You can think of it as a permanent admin session for specific endpoints.
 
 ##Unregistered users
 
-Next to GET operations on public data, AMIV API currently allows unregistered users in exactly two cases: Signing up for a public event or managing email-subscribtions for public email lists. In Both cases, 'is_public' of the event or forward must be True.
+Next to GET operations on public data, AMIV API currently allows unregistered users in exactly two cases: Signing up for a public event or managing email-subscriptions for public email lists. In Both cases, 'is_public' of the event or forward must be True.
 
 Basically, an unregistered user can perform any GET, POST, PATCH or DELETE action on the supported resource within the usual rights. However, as the HTTP request comes without login, you need to confirm yourself and your email-address with a special token.
 After the creation of a new item with POST, the User will get an email with the Token. Your Admin might provide links in this mail to a user-friendly tool. However, here is the Workflow that always works:
@@ -256,7 +256,7 @@ Data:
         'email': "mymail@myprovider.ch",
     }
 
-You will receive a 202 Acepted. This means that the signup is not valid yet, but the server has received valid data and the user can confirm the signup by clicking on a link in an email.
+You will receive a 202 Accepted. This means that the signup is not valid yet, but the server has received valid data and the user can confirm the signup by clicking on a link in an email.
 The User-ID '-1' stands for the anonymous user.
 
 ##Email Forwards
@@ -326,7 +326,7 @@ This will return the third page of 10 items.
 To manipulate an existing object you have to supply the If-Match header to prevent race conditions.
 When you use GET on an element you will be provided with an _etag field. The etag is a string which changes whenever the object is manipulated somehow. When issuing a PUT, PATCH or DELETE query you must supply the etag in the If-Match header to ensure that no one else changed the object in between.
 
-If no etag is provided, you will recieve 403 FORBIDDEN. If the etag is wrong, the api returns 412 PRECONDITION FAILED.
+If no etag is provided, you will receive 403 FORBIDDEN. If the etag is wrong, the api returns 412 PRECONDITION FAILED.
 
 ### Example: Use PATCH to change a password
 
@@ -345,7 +345,7 @@ The response will be the changed user object.
 
 The api supports descriptions and titles for events and job offers in different
 languages.
-If you post to one of those ressources, the response will contain a title_id
+If you post to one of those resources, the response will contain a title_id
 and description_id. Those are the unique identifiers.
 To add content in various languages you can now use this id to post to the
 /translations resource
@@ -459,7 +459,7 @@ Response:
      u'title': u'A random Event',
      u'title_id': 1}
 
-Yay! The title and description are added in english as requested.
+Yay! The title and description are added in English as requested.
 
 # Working with files
 
@@ -532,7 +532,7 @@ Make sure you provided the required If-Match header. If that does not help
 make sure you can use GET on the item. If you are unable to request a GET
 then your account can not access the object.
 If you are able to GET the object, then your provided data is invalid. If
-you do not have admin priviledges for the endpoint(method on that resource)
+you do not have admin privileges for the endpoint(method on that resource)
 make sure your request will conserve your ownership of the object.
 
 ## How can I send boolean etc to the server using python requests?

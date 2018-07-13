@@ -20,7 +20,7 @@
     if g.get('resource_admin_readonly'):
         print('Can look at anything, but not necessarily change something.')
 
-    # Add additinonal authentication with a new hook
+    # Add additional authentication with a new hook
     def my_auth_hook(resource):
         # You could set g.resource_admin or g.resource_admin_readonly here
         pass
@@ -44,7 +44,7 @@ Take a look at `users.security` for an example.
 
 **How it works**
 
-We are using Eve's hooks to add authentiation.
+We are using Eve's hooks to add authentication.
 All requests go through the following methods:
 
 - `AmivTokenAuth.authorized` (only if the methods is not public!)
@@ -98,7 +98,7 @@ class AmivTokenAuth(BasicAuth):
         return True
 
     def has_resource_write_permission(self, user_id):
-        """Check if the user is alllowed to write to the resource.
+        """Check if the user is allowed to write to the resource.
 
         Implement this function for your resource.
         Default behaviour: No user has write permission.
@@ -271,10 +271,10 @@ def check_if_admin(resource, *args):
 
     Set the variables:
 
-    - `g.resouce_admin` (bool): True if user can see and change anything
+    - `g.resource_admin` (bool): True if user can see and change anything
     - `g.resource_admin_readonly` (bool): True if user can see anything
 
-    Then notify the auth callback with the current resoure.
+    Then notify the auth callback with the current resource.
     """
     # Set defaults
     g.resource_admin = g.resource_admin_readonly = False

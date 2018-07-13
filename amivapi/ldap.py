@@ -98,7 +98,7 @@ def sync_all():
     Returns:
         list: Data of all updated users.
     """
-    # See file docstring for explanation of `deparmentNumber` field
+    # See file docstring for explanation of `departmentNumber` field
     keywords = ''.join(u"(departmentNumber=*%s*)" % _escape(item)
                        for item in current_app.config['LDAP_DEPARTMENT_MAP'])
     query = u"(& (ou=VSETH Mitglied) (| %s) )" % keywords
@@ -154,7 +154,7 @@ def _process_data(data):
     res['gender'] = \
         u"male" if int(data['swissEduPersonGender']) == 1 else u"female"
 
-    # See file docstring for explanation of `deparmentNumber` field
+    # See file docstring for explanation of `departmentNumber` field
     # In some rare cases, the departmentNumber field is either empty
     # or missing -> normalize to empty string
     department_number = next(iter(data.get('departmentNumber', [])), '')

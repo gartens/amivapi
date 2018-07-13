@@ -48,7 +48,7 @@ class MailingListTest(WebTestNoAuth):
             self.assertItemsEqual(content, file.read().split('\n'))
 
     def assertNoFile(self, name):
-        """Assert the file doesnt exist."""
+        """Assert the file doesn't exist."""
         self.assertFalse(isfile(self._full_name(name)))
 
     def test_new_group(self):

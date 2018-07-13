@@ -52,7 +52,7 @@ class LdapTest(WebTestNoAuth):
         """Test that ldap can authenticate a user."""
         nethz = "Pablo"
         login_data = {'username': nethz, 'password': 'p4bl0'}
-        # Auth without ldap doesnt succeed
+        # Auth without ldap doesn't succeed
         self.mock_ldap.authenticate = MagicMock(return_value=False)
         self.api.post("/sessions", data=login_data, status_code=401)
 
@@ -123,7 +123,7 @@ class LdapTest(WebTestNoAuth):
             self.assertTrue(male_filtered['gender'] == 'male')
 
     def test_process_department(self):
-        """Test department filtering. Relies on 'departmentNUmber' field."""
+        """Test department filtering. Relies on 'departmentNumber' field."""
         with self.app.app_context():
             tests = (
                 ('ETH Studentin D-ITET', 'itet'),
@@ -150,7 +150,7 @@ class LdapTest(WebTestNoAuth):
             self.app.config['LDAP_DEPARTMENT_MAP'] = {our: 'itet'}
 
             tests = (
-                # (departmentNUmber, ou, expected result)
+                # (departmentNumber, ou, expected result)
                 ([our], ['VSETH Mitglied'], 'regular'),
                 ([our], ['blabla', 'VSETH Mitglied', 'random'], 'regular'),
                 # Something missing

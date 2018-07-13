@@ -71,7 +71,7 @@ LDAP_USERNAME = None
 LDAP_PASSWORD = None
 
 # Security
-ROOT_PASSWORD = u"root"  # Will be overwridden by config.py
+ROOT_PASSWORD = u"root"  # Will be overwritten by config.py
 SESSION_TIMEOUT = timedelta(days=365)
 PASSWORD_CONTEXT = CryptContext(
     schemes=["pbkdf2_sha256"],
@@ -92,7 +92,7 @@ PASSWORD_CONTEXT = CryptContext(
 # include a fragment.
 # We also require https, because we do not want to send tokens over
 # unencrypted connections.
-# An expection to this is `localhost`, which can be registered without
+# An exception to this is `localhost`, which can be registered without
 # https to allow testing of local tools (if required)
 REDIRECT_URI_REGEX = '^((http://)?localhost[^#]*|https://[^#]+)$'
 
@@ -103,7 +103,7 @@ CONFIRM_EMAIL_TEXT = (
     " this link: %(link)s\n\nBest regards,\nAMIV!"
 )
 
-# Signup confirmation without redirct
+# Signup confirmation without redirect
 CONFIRM_TEXT = "Your singup was confirmed!"
 SIGNUP_DELETED_TEXT = "Your signup was removed."
 
